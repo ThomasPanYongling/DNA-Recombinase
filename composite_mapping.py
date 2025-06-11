@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-class BijectiveElement:
+class CompositeElement:
     def __init__(self, name):
         self.name = name
         self._composite = None
@@ -11,18 +11,18 @@ class BijectiveElement:
     def set_composite(self, other):
         self._composite = other
 
-class BijectiveMapping:
+class CompositeMapping:
     def __init__(self):
         self.elements = {}
     
     def add_pair(self, element1, element2):
-        # Create BijectiveElement instances if they don't exist
+        # Create CompositeElement instances if they don't exist
         if element1 not in self.elements:
-            self.elements[element1] = BijectiveElement(element1)
+            self.elements[element1] = CompositeElement(element1)
         if element2 not in self.elements:
-            self.elements[element2] = BijectiveElement(element2)
+            self.elements[element2] = CompositeElement(element2)
         
-        # Set up the bijective relationship
+        # Set up the composite relationship
         self.elements[element1].set_composite(self.elements[element2])
         self.elements[element2].set_composite(self.elements[element1])
     
@@ -64,14 +64,14 @@ def print_with_prime_coloring(text):
     else:
         safe_print(text)
 
-def demonstrate_bijective_mapping():
+def demonstrate_composite_mapping():
     # Check encoding first
     if not check_encoding():
         print("Please ensure this file is saved with UTF-8 encoding")
         return
 
-    # Create a bijective mapping
-    mapping = BijectiveMapping()
+    # Create a composite mapping
+    mapping = CompositeMapping()
     
     # Define all the letter sets
     latin_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -88,7 +88,7 @@ def demonstrate_bijective_mapping():
     latin_names_lower = [name.lower() for name in latin_names_upper]
     
     # Add all pairs
-    safe_print("Creating bijective mappings...")
+    safe_print("Creating composite mappings...")
     
     try:
         # 1. Latin uppercase to uppercase prime
@@ -116,7 +116,7 @@ def demonstrate_bijective_mapping():
             mapping.add_pair(name, f"{name}_prime")
         
         # Demonstrate the mappings
-        safe_print("\nDemonstrating bijective relationships:")
+        safe_print("\nDemonstrating composite relationships:")
         
         # Example for first letter (A/α/alpha)
         safe_print("\nExample for first letter (A/α/alpha):")
@@ -153,4 +153,4 @@ def demonstrate_bijective_mapping():
         return
 
 if __name__ == "__main__":
-    demonstrate_bijective_mapping() 
+    demonstrate_composite_mapping() 
